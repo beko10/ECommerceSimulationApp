@@ -9,6 +9,6 @@ public interface ICategoryService
     Task<IDataResult<IEnumerable<GetAllCategoryDto>>> GetAll(bool track = true);
     Task<IDataResult<GetByIdCategoryDto>> GetByIdAsync(string id, bool track = true);
     Task<IResult> CreateAsync(CreateCategoryDto entity);
-    IResult Update(UpdateCategoryDto entity);
-    IResult Remove(DeleteCategoryDto entity);
+    Task<IResult> Update(UpdateCategoryDto entity);
+    Task<IResult> Remove(DeleteCategoryDto entity);
 }
