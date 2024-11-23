@@ -1,4 +1,5 @@
-﻿using ECommerceSimulationApp.EntityLayer.Entity;
+﻿using ECommerceSimulationApp.DataAccessLayer.Configurations;
+using ECommerceSimulationApp.EntityLayer.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceSimulationApp.DataAccessLayer.Context;
@@ -13,16 +14,36 @@ public class AppDbContext : DbContext
     public DbSet<OrderDetail> OrderDetails { get; set; }
     public DbSet<Supplier> Suppliers { get; set; }
 
+    public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
+    {
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        //OrderDetail Tbl için id iptal edildi 
-        modelBuilder.Entity<OrderDetail>().Ignore(or => or.Id);
+        modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+        modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+        modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
+        modelBuilder.ApplyConfiguration(new OrderConfiguration());
+        modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
+        modelBuilder.ApplyConfiguration(new ProductConfiguration());
+        modelBuilder.ApplyConfiguration(new SupplierConfiguration());
+    }
 
-        //OrderDetail Tbl için OrderId ve ProductId sutunları kullanılarak Composite Key yapılandırılması yapıldı
-        modelBuilder.Entity<OrderDetail>().HasKey(or => new
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        foreach (var entry in ChangeTracker.Entries<BaseEntity>())
         {
-            or.OrderID,
-            or.ProductID,
-        });
+            if (entry.State == EntityState.Added)
+            {
+                entry.Entity.Id = Guid.NewGuid().ToString();
+                entry.Entity.CreatedDate = DateTime.Now;
+                entry.Entity.IsActive = true;
+            }
+            else if (entry.State == EntityState.Modified)
+            {
+                entry.Property(x => x.CreatedDate).IsModified = false;
+            }
+
+        }
+        return base.SaveChangesAsync(cancellationToken);
     }
 }

@@ -10,5 +10,6 @@ public class BaseEntity
     {
         Id = Guid.NewGuid().ToString();
         CreatedDate = DateTime.Now;
+        IsActive = true;
     }
 }

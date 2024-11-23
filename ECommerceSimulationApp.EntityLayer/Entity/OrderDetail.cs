@@ -6,6 +6,6 @@ public class OrderDetail : BaseEntity
     public double UnitPrice { get; set; }
     public Product? Product { get; set; }
     public Order? Order { get; set; }
-    public string? ProductID { get; set; }
-    public string? OrderID { get; set; }
+    public  string ProductID { get; set; } = string.Empty;  
+    public string OrderID { get; set; } = string.Empty;
 }

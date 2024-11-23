@@ -2,9 +2,9 @@
 
 public class Customer : BaseEntity
 {
-    public string? CustomerName { get; set; }
-    public string? Country { get; set; }
-    public string? City { get; set; }
-    public string? Phone { get; set; }
+    public string CustomerName { get; set; } = string.Empty;
+    public string Country { get; set; } = string.Empty;
+    public string City { get; set; } = string.Empty;
+    public string Phone { get; set; } = string.Empty;
     public ICollection<Order>? Orders { get; set; } = [];
 }
