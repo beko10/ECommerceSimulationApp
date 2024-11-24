@@ -1,17 +1,16 @@
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using ECommerceSimulationApp.BusinessLayer.Abstract;
-using ECommerceSimulationApp.BusinessLayer.Concrete;
+using ECommerceSimulationApp.BusinessLayer.FluentValidation.CategoryValidation;
 using ECommerceSimulationApp.DataAccessLayer.Abstract;
 using ECommerceSimulationApp.DataAccessLayer.Concrete;
 using ECommerceSimulationApp.DataAccessLayer.Context;
+using ECommerceSimulationApp.DataAccessLayer.UnitOfWork;
+using ECommerceSimulationApp.DesktopUI;
+using ECommerceSimulationApp.DesktopUI.Forms;
+using ECommerceSimulationApp.EntityLayer.Dto.CategoryDto;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
-using ECommerceSimulationApp.DesktopUI.Forms;
-using ECommerceSimulationApp.DesktopUI;
-using ECommerceSimulationApp.DataAccessLayer.UnitOfWork;
-using ECommerceSimulationApp.EntityLayer.Dto.CategoryDto;
-using ECommerceSimulationApp.BusinessLayer.FluentValidation.CategoryValidation;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace ECommerceSimulationApp.UI
 {
@@ -29,7 +28,7 @@ namespace ECommerceSimulationApp.UI
             var host = CreateHostBuilder().Build();
             ServiceProvider = host.Services;
 
-            Application.Run(ServiceProvider.GetRequiredService<MainForm>());
+            Application.Run(ServiceProvider.GetRequiredService<OrderForm>());
         }
 
         public static IServiceProvider ServiceProvider { get; private set; }

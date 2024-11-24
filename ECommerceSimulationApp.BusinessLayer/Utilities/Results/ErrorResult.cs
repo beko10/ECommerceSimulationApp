@@ -13,4 +13,12 @@ public class ErrorResult : Result
     public ErrorResult() : base(false)
     {
     }
+
+    public void ThrowIfExceptionExists()
+    {
+        if (Exception != null)
+        {
+            throw Exception;
+        }
+    }
 }

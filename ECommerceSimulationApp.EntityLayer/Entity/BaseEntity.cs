@@ -2,14 +2,15 @@
 
 public class BaseEntity
 {
-    public string Id { get; set; }
+    public string Id { get; set; } = string.Empty;
     public DateTime CreatedDate { get; set; }
     public bool IsActive { get; set; }
 
-    public BaseEntity()
-    {
-        Id = Guid.NewGuid().ToString();
-        CreatedDate = DateTime.Now;
-        IsActive = true;
-    }
+    //saveChange methoduna ınterceptor yazıldı 
+    //public BaseEntity()
+    //{
+    //    Id = Guid.NewGuid().ToString();
+    //    CreatedDate = DateTime.Now;
+    //    IsActive = true;
+    //}
 }

@@ -61,6 +61,19 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 
         return (await query.FirstOrDefaultAsync(x => x.Id == id))!;
     }
+
+    public async Task<T> GetAsync(Expression<Func<T, bool>>? expression, bool track = true)
+    {
+        var query = _dbSet.AsQueryable();
+        if(track is false)
+        {
+            query = query.AsNoTracking();   
+        }
+
+        return expression == null ? (await query.FirstOrDefaultAsync())!
+                                  : (await query.FirstOrDefaultAsync(expression))!;
+    }
+
     public async Task CreateAsync(T entity)
     {
         await _dbSet.AddAsync(entity);
@@ -90,4 +103,6 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         }
         return query;
     }
+
+
 }
