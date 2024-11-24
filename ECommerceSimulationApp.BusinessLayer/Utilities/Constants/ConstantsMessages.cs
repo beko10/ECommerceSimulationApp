@@ -242,5 +242,43 @@ public static class ConstantsMessages
         public const string InvalidOperation = "Geçersiz işlem.";
     }
 
+    public static class SupplierMessages
+    {
+        // Validation Messages
+        public const string CompanyNameRequired = "Şirket adı zorunludur.";
+        public const string CompanyNameLength = "Şirket adı 2-100 karakter arasında olmalıdır.";
+        public const string ContactTitleRequired = "İlgili kişi unvanı zorunludur.";
+        public const string ContactTitleLength = "İlgili kişi unvanı 2-50 karakter arasında olmalıdır.";
+        public const string CountryRequired = "Ülke bilgisi zorunludur.";
+        public const string CityRequired = "Şehir bilgisi zorunludur.";
+        public const string PhoneRequired = "Telefon numarası zorunludur.";
+        public const string PhoneInvalid = "Geçerli bir telefon numarası girilmelidir.";
+        public const string ValidationError = "Doğrulama Hatası";
 
+        // Success Messages
+        public const string SupplierCreated = "Tedarikçi başarıyla oluşturuldu.";
+        public const string SupplierUpdated = "Tedarikçi başarıyla güncellendi.";
+        public const string SupplierDeleted = "Tedarikçi başarıyla silindi.";
+        public const string SuppliersListed = "Tedarikçiler başarıyla listelendi.";
+        public const string SupplierFound = "Tedarikçi başarıyla bulundu.";
+
+        // Error Messages
+        public const string SupplierNotFound = "Tedarikçi bulunamadı.";
+        public const string SuppliersNotFound = "Hiç tedarikçi bulunamadı.";
+        public const string SupplierCreateError = "Tedarikçi oluşturulurken bir hata oluştu.";
+        public const string SupplierUpdateError = "Tedarikçi güncellenirken bir hata oluştu.";
+        public const string SupplierDeleteError = "Tedarikçi silinirken bir hata oluştu.";
+
+        // Business Rule Messages
+        public const string SupplierBusinessRuleError = "Tedarikçi iş kuralı hatası.";
+        public const string SupplierHasPendingOrders = "Tedarikçinin tamamlanmamış siparişleri mevcut.";
+        public const string SupplierDeactivated = "Bu tedarikçi devre dışı bırakılmıştır.";
+        public const string SupplierBusinessRuleSuccess = "Tedarikçi iş kuralı doğrulama başarılı.";
+
+        // Generic Messages
+        public const string UnexpectedError = "Beklenmeyen bir hata oluştu.";
+        public const string TransactionError = "İşlem sırasında bir hata oluştu.";
+        public const string InvalidOperation = "Geçersiz işlem.";
+        public const string OperationSuccessful = "İşlem başarıyla tamamlandı.";
+    }
 }
