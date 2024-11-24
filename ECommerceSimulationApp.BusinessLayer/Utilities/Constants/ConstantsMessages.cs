@@ -200,4 +200,47 @@ public static class ConstantsMessages
         public const string TransactionError = "İşlem sırasında bir hata oluştu.";
         public const string InvalidOperation = "Geçersiz işlem.";
     }
+
+    public static class ProductMessages
+    {
+        // Success Messages
+        public const string ProductCreated = "Ürün başarıyla oluşturuldu.";
+        public const string ProductUpdated = "Ürün başarıyla güncellendi.";
+        public const string ProductDeleted = "Ürün başarıyla silindi.";
+        public const string ProductsListed = "Ürünler başarıyla listelendi.";
+        public const string ProductFound = "Ürün başarıyla bulundu.";
+
+        // Error Messages
+        public const string ProductNotFound = "Ürün bulunamadı.";
+        public const string ProductsNotFound = "Hiç ürün bulunamadı.";
+        public const string ProductCreateError = "Ürün oluşturulurken bir hata oluştu.";
+        public const string ProductUpdateError = "Ürün güncellenirken bir hata oluştu.";
+        public const string ProductDeleteError = "Ürün silinirken bir hata oluştu.";
+        public const string CategoryNotFound = "Kategori bulunamadı.";
+        public const string SupplierNotFound = "Tedarikçi bulunamadı.";
+
+        // Validation Messages
+        public const string ProductNameRequired = "Ürün adı zorunludur.";
+        public const string ProductNameLength = "Ürün adı 2-100 karakter arasında olmalıdır.";
+        public const string UnitPriceGreaterThanZero = "Ürün fiyatı sıfırdan büyük olmalıdır.";
+        public const string UnitPriceTooHigh = "Ürün fiyatı 10.000'den büyük olamaz.";
+        public const string UnitsInStockMustBePositive = "Stoktaki ürün adedi negatif olamaz.";
+        public const string CategoryNameRequired = "Kategori adı zorunludur.";
+        public const string CategoryNameLength = "Kategori adı 2-50 karakter arasında olmalıdır.";
+        public const string SupplierNameRequired = "Tedarikçi adı zorunludur.";
+        public const string SupplierNameLength = "Tedarikçi adı 2-50 karakter arasında olmalıdır.";
+
+        // Business Rule Messages
+        public const string ProductBusinessRuleError = "Ürün iş kuralı hatası.";
+        public const string ProductOutOfStock = "Ürün stokta mevcut değil.";
+        public const string ProductDiscontinued = "Bu ürün kullanımdan kaldırılmıştır.";
+        public const string ProductBusinessRuleSuccess = "Ürün iş kuralı doğrulama başarılı.";
+
+        // Generic Messages
+        public const string UnexpectedError = "Beklenmeyen bir hata oluştu.";
+        public const string TransactionError = "İşlem sırasında bir hata oluştu.";
+        public const string InvalidOperation = "Geçersiz işlem.";
+    }
+
+
 }

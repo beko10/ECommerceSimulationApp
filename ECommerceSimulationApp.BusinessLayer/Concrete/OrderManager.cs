@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using ECommerceSimulationApp.BusinessLayer.Abstract;
 using ECommerceSimulationApp.BusinessLayer.Exceptions.ExceptionTypes;
-using ECommerceSimulationApp.BusinessLayer.FluentValidation.OrderValidation;
 using ECommerceSimulationApp.BusinessLayer.Utilities.Constants;
 using ECommerceSimulationApp.BusinessLayer.Utilities.Helper;
 using ECommerceSimulationApp.BusinessLayer.Utilities.Results;
