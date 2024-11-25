@@ -9,6 +9,7 @@ using ECommerceSimulationApp.EntityLayer.Dto.ProductDto;
 using ECommerceSimulationApp.EntityLayer.Entity;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ECommerceSimulationApp.BusinessLayer.Concrete;
 
@@ -133,6 +134,30 @@ public class ProductManagaer(IUnitOfWork unitOfWork, IMapper mapper, IValidator<
         catch (BusinessRuleException ex)
         {
             throw new BusinessRuleException($"{ConstantsMessages.ProductMessages.ProductBusinessRuleError} : {ex.Message}");
+        }
+        catch (Exception ex)
+        {
+
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public async Task<IDataResult<IEnumerable<SearchResultProductDto>>> SearchProduct(string searchProductName, bool track = true)
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(searchProductName))
+            {
+                return new ErrorDataResult<IEnumerable<SearchResultProductDto>>(null, "Arama yapmak için bir karakter girin");
+            }
+            var searchText = searchProductName.Trim().ToLowerInvariant();
+            var searchProductListResult = await _unitOfWork.ProductRepository.Where(p => p.ProductName.ToLower().Contains(searchText), track).ToListAsync();
+            if (!searchProductListResult.Any())
+            {
+                return new ErrorDataResult<IEnumerable<SearchResultProductDto>>(null, ConstantsMessages.ProductMessages.ProductsNotFound);
+            }
+            var searchProductListResultMapping = _mapper.Map<IEnumerable<SearchResultProductDto>>(searchProductListResult);
+            return new SuccessDataResult<IEnumerable<SearchResultProductDto>>(searchProductListResultMapping, ConstantsMessages.ProductMessages.ProductsListed);
         }
         catch (Exception ex)
         {

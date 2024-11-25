@@ -1,9 +1,12 @@
-﻿using System.Data;
+﻿using ECommerceSimulationApp.BusinessLayer.Abstract;
+using System.Data;
 
 namespace ECommerceSimulationApp.DesktopUI.Forms;
 
 public partial class OrderForm : Form
 {
+    private readonly IOrderService _orderService;
+    private readonly IProductService _productService;
 
     public OrderForm()
     {
@@ -17,9 +20,20 @@ public partial class OrderForm : Form
         GetAllProductsBySearchText(string.Empty);
     }
 
-    private void GetAllProductsBySearchText(string searhText)
+    private async void GetAllProductsBySearchText(string searhText)
     {
-
+        var searchProductResult = await _productService.SearchProduct(searhText, false);
+        if (!searchProductResult.IsSuccess)
+        {
+            MessageBox.Show(searchProductResult.Message);
+        }
+        else
+        {
+            MessageBox.Show(searchProductResult.Message);
+            lstBasket.DataSource = searchProductResult.Data;
+            lstBasket.DisplayMember = "ProductName";
+            lstBasket.ValueMember = "Id";
+        }
     }
 
     private void btnAddBasket_Click(object sender, EventArgs e)
